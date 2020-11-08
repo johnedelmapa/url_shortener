@@ -12,8 +12,8 @@ Things you may want to cover:
   5.2.4
 
 * How to run the application
- # bundle install
- # rails db:create
- # rails db:migrate db:seed
- # rails server
+  bundle install
+  rails db:create
+  rails db:migrate db:seed
+  rails server
 * ...
