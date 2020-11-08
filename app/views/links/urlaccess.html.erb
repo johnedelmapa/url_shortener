@@ -1,0 +1,23 @@
+<h1 class="text-center mt-4">Top 100 most frequently accessed URLs.</h1> 
+<div class="row">
+    <% if @links.length > 0 %>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>Origin Link</th>
+                <th>Short Link</th>
+                <th>Clicked</th>
+            </tr>
+
+            <% @links.each do |link| %>
+                <% short_link = "#{request.base_url}/s/#{link.slug}"%>
+                <tr>
+                    <td><%= link.url %></td>     
+                    <td><%= link_to short_link, short_path(link.slug), target: "_blank"%></td>
+                    <td><%= link.clicked %></td>
+                </tr>
+            <% end %>
+        </table>
+    <% else %>
+        <h3> There is no data </h3>
+    <% end %>
+</div>

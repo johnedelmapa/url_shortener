@@ -1,0 +1,35 @@
+<h1 class="text-center mt-4">All Links</h1> 
+
+<div class="row">
+    <div class="col-6 mx-auto mb-4 mt-2">
+        <%= form_for @link do |f| %>
+            <div class="form-group">
+                <%= f.text_field :url, class: "form-control", placeholder: "Email"%>
+            </div>
+            <%= f.submit "Make link short", class: "btn btn-primary btn-block"%>
+        <% end %>
+    </div>
+</div>
+
+<div class="row">
+    <% if @links.length > 0 %>
+        <table class="table table-bordered mt-2">
+            <tr>
+                <th>Origin Link</th>
+                <th>Short Link</th>
+                <th>Clicked</th>
+            </tr>
+
+            <% @links.each do |link| %>
+                <% short_link = "#{request.base_url}/s/#{link.slug}"%>
+                <tr>
+                    <td><%= link.url %></td>     
+                    <td><%= link_to short_link, short_path(link.slug), target: "_blank"%></td>
+                    <td><%= link.clicked %></td>
+                </tr>
+            <% end %>
+        </table>
+    <% else %>
+        <h3> There is no data </h3>
+    <% end %>
+</div>
