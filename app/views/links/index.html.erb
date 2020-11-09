@@ -15,6 +15,7 @@
     <% if @links.length > 0 %>
         <table class="table table-bordered mt-2">
             <tr>
+                <th>Title</title>
                 <th>Origin Link</th>
                 <th>Short Link</th>
                 <th>Clicked</th>
@@ -23,6 +24,7 @@
             <% @links.each do |link| %>
                 <% short_link = "#{request.base_url}/s/#{link.slug}"%>
                 <tr>
+                    <td><%= link.title%></td>
                     <td><%= link.url %></td>     
                     <td><%= link_to short_link, short_path(link.slug), target: "_blank"%></td>
                     <td><%= link.clicked %></td>

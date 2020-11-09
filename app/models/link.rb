@@ -14,8 +14,8 @@ class Link < ApplicationRecord
   end
   
   # the API
-  def self.shorten(url)   
-    link = Link.new(url: url)
+  def self.shorten(url, title = '')   
+    link = Link.new(url: url, title: title)
     return link.short if link.save
   end
 end

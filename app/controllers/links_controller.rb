@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  require 'pismo'
   def show
     @link = Link.find_by_slug(params[:slug]) 
     @link.update_attribute(:clicked, @link.clicked + 1)
@@ -15,8 +16,9 @@ class LinksController < ApplicationController
     if params[:link][:url].empty?
       flash[:danger] = "Please input url"
     else
+      doc = Pismo::Document.new(url)
       flash[:success] = "Sucessfuly Created"
-      Link.shorten(url)
+      Link.shorten(url, doc.title)
     end
     redirect_to root_url 
   end
